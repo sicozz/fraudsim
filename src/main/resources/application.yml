@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: fraudsim
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      # TODO: Use the schema registry for serialization
+      # value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+
+fraudsim:
+  output:
+    kafka:
+      enabled: true
+      topic: transactions
+    file:
+      enabled: false
+      path: ./output
+      format: json
+  transaction:
+    default-volume: 100
+    default-tps: 10
+  fraud:
+    default-rate: 0.05
+    enabled-patterns:
+      - amountSpike
+      - merchantAnomaly
+      - accountTakeover
+
+logging:
+  level:
+    root: INFO
+    io.github.sicozz.fraudsim: DEBUG
