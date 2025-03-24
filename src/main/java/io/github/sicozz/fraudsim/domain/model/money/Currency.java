@@ -15,14 +15,12 @@ public enum Currency {
   private final String symbol;
   private final int defaultFractionDigits;
 
-  // TODO: try @AllArgsConstructor
   Currency(String name, String symbol, int defaultFractionDigits) {
     this.name = name;
     this.symbol = symbol;
     this.defaultFractionDigits = defaultFractionDigits;
   }
 
-  // TODO: try @Getter
   public String getName() {
     return name;
   }

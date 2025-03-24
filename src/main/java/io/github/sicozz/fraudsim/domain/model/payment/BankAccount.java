@@ -8,14 +8,13 @@ public record BankAccount(
     @NotBlank String routingNumber,
     @NotBlank String accountHolderName,
     @NotBlank String bankName,
-    @Pattern(regexp = "^(CHECKING|SAVINGS|MONEY_MARKET|CERTIFICATE_OF_DEPOSIT)$") String accountType,
+    @Pattern(regexp = "^(CHECKING|SAVINGS|MONEY_MARKET|CERTIFICATE_OF_DEPOSIT)$")
+        String accountType,
     String maskedAccountNumber,
-    String country
-) implements PaymentMethod {
+    String country)
+    implements PaymentMethod {
 
-  /**
-   * Compact constructor for validation and defaults.
-   */
+  /* Compact constructor for validation and defaults. */
   public BankAccount {
     // Generate masked account number if not provided
     if (maskedAccountNumber == null || maskedAccountNumber.isBlank()) {
@@ -66,9 +65,7 @@ public record BankAccount(
     return "SAVINGS".equals(accountType);
   }
 
-  /**
-   * Creates a masked version of the account number.
-   */
+  /* Creates a masked version of the account number. */
   private static String maskAccountNumber(String accountNumber) {
     if (accountNumber == null || accountNumber.length() <= 4) {
       return accountNumber;
@@ -77,5 +74,19 @@ public record BankAccount(
     int lastFourStart = accountNumber.length() - 4;
     String lastFour = accountNumber.substring(lastFourStart);
     return "X".repeat(lastFourStart) + lastFour;
+  }
+
+  /* Factory method for creating a checking account. */
+  public static BankAccount checking(
+      String accountNumber, String routingNumber, String accountHolderName, String bankName) {
+    return new BankAccount(
+        accountNumber, routingNumber, accountHolderName, bankName, "CHECKING", null, "US");
+  }
+
+  /* Factory method for creating a savings account. */
+  public static BankAccount savings(
+      String accountNumber, String routingNumber, String accountHolderName, String bankName) {
+    return new BankAccount(
+        accountNumber, routingNumber, accountHolderName, bankName, "SAVINGS", null, "US");
   }
 }

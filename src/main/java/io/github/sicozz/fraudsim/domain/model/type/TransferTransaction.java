@@ -12,7 +12,7 @@ public record TransferTransaction(
     String correspondingBankCode)
     implements TransactionType {
 
-  /** Compact constructor for validation and defaults. */
+  /* Compact constructor for validation and defaults. */
   public TransferTransaction {
     // Default values if not provided
     if (purposeCode == null) {
@@ -42,43 +42,43 @@ public record TransferTransaction(
     }
   }
 
-  /** Returns whether this is a wire transfer. */
+  /* Returns whether this is a wire transfer. */
   public boolean isWireTransfer() {
     return "WIRE".equals(transferMethod);
   }
 
-  /** Returns whether this is an ACH transfer. */
+  /* Returns whether this is an ACH transfer. */
   public boolean isAchTransfer() {
     return "ACH".equals(transferMethod);
   }
 
-  /** Returns whether this is a SEPA transfer (Single Euro Payments Area). */
+  /* Returns whether this is a SEPA transfer (Single Euro Payments Area). */
   public boolean isSepaTransfer() {
     return "SEPA".equals(transferMethod);
   }
 
-  /** Factory method for creating a domestic ACH transfer. */
+  /* Factory method for creating a domestic ACH transfer. */
   public static TransferTransaction ach(String referenceMessage) {
     return new TransferTransaction("ACH", false, "PAYMENT", referenceMessage, false, false, "");
   }
 
-  /** Factory method for creating a wire transfer. */
+  /* Factory method for creating a wire transfer. */
   public static TransferTransaction wire(boolean isInternational, String purposeCode) {
     return new TransferTransaction("WIRE", isInternational, purposeCode, "", false, false, "");
   }
 
-  /** Factory method for creating a SEPA transfer (European payments). */
+  /* Factory method for creating a SEPA transfer (European payments). */
   public static TransferTransaction sepa(String referenceMessage) {
     return new TransferTransaction("SEPA", false, "PAYMENT", referenceMessage, false, false, "");
   }
 
-  /** Factory method for creating a recurring ACH transfer. */
+  /* Factory method for creating a recurring ACH transfer. */
   public static TransferTransaction recurringAch(String referenceMessage) {
     return new TransferTransaction(
         "ACH", false, "RECURRING_PAYMENT", referenceMessage, true, true, "");
   }
 
-  /** Factory method for creating an internal bank transfer. */
+  /* Factory method for creating an internal bank transfer. */
   public static TransferTransaction internalTransfer(String referenceMessage) {
     return new TransferTransaction(
         "INTERNAL", false, "TRANSFER", referenceMessage, false, false, "");

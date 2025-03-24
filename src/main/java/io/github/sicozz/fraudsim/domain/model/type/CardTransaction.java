@@ -20,17 +20,17 @@ public record CardTransaction(
     }
   }
 
-  /** Factory method for creating a standard card transaction. */
+  /* Factory method for creating a standard card transaction. */
   public static CardTransaction standard(String network) {
     return new CardTransaction(network, false, false, false);
   }
 
-  /** Factory method for creating an online card transaction. */
+  /* Factory method for creating an online card transaction. */
   public static CardTransaction ecommerce(String network) {
     return new CardTransaction(network, false, true, false);
   }
 
-  /** Factory method for creating a contactless card transaction. */
+  /* Factory method for creating a contactless card transaction. */
   public static CardTransaction contactless(String network) {
     return new CardTransaction(network, true, false, false);
   }

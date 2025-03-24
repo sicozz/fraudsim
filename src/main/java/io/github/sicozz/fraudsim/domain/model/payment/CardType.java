@@ -8,7 +8,6 @@ public enum CardType {
   FLEET("Fleet Card"),
   HSA("Health Savings Account Card"),
   EBT("Electronic Benefit Transfer Card");
-  ;
 
   private final String displayName;
 

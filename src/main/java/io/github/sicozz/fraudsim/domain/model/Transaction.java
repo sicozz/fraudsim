@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/** Immutable representation of a financial transaction. */
+/* Immutable representation of a financial transaction. */
 public record Transaction(
     @NotNull UUID id,
     @NotNull String referenceId,
@@ -94,6 +94,6 @@ public record Transaction(
   }
 
   public boolean hasFraudIndicators() {
-    return fraudIndicators.isEmpty();
+    return !fraudIndicators.isEmpty();
   }
 }

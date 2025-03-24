@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-/**
- * Builder for creating Transaction instances. Provides a fluent API for constructing complex
- * transactions.
- */
 public class TransactionBuilder {
   private UUID id = UUID.randomUUID();
   private String referenceId;

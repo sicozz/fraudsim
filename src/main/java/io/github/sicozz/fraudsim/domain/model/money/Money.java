@@ -25,9 +25,16 @@ public record Money(@NotNull @PositiveOrZero BigDecimal amount, @NotNull Currenc
 
   public Money add(Money other) {
     if (!this.currency.equals(other.currency)) {
-      throw new IllegalArgumentException("Cannot subtract different currencies");
+      throw new IllegalArgumentException("Cannot add different currencies");
     }
     return new Money(this.amount.add(other.amount), this.currency);
+  }
+
+  public Money subtract(Money other) {
+    if (!this.currency.equals(other.currency)) {
+      throw new IllegalArgumentException("Cannot subtract different currencies");
+    }
+    return new Money(this.amount.subtract(other.amount), this.currency);
   }
 
   public String formatted() {
